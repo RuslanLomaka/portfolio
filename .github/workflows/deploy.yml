@@ -1,0 +1,25 @@
+name: Auto Deploy to Raspberry Pi
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: SSH into Raspberry Pi and update
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.PI_HOST }}
+          username: ${{ secrets.PI_USER }}
+          key: ${{ secrets.PI_SSH_KEY }}
+          script: |
+            cd /home/ruslan/work-site
+            git fetch origin main
+            git reset --hard origin/main
+            sudo systemctl reload nginx
