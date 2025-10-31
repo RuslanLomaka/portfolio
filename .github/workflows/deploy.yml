@@ -27,3 +27,4 @@ jobs:
         run: |
           cloudflared access ssh --hostname $PI_HOST --id $CF_CLIENT_ID --secret $CF_CLIENT_SECRET \
           --command "cd ~/work-site && git pull && sudo systemctl restart docker"
+
