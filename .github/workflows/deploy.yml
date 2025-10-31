@@ -1,27 +1,29 @@
-name: Auto Deploy to Raspberry Pi
+name: Deploy to Raspberry Pi
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: SSH into Raspberry Pi and update
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.PI_HOST }}
-          username: ${{ secrets.PI_USER }}
-          key: ${{ secrets.PI_SSH_KEY }}
-          script: |
-            cd /home/ruslan/work-site
-            git fetch origin main
-            git reset --hard origin/main
-            sudo systemctl reload nginx
+      - name: Install Cloudflared
+        run: |
+          curl -L https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64 -o cloudflared
+          chmod +x cloudflared
+          sudo mv cloudflared /usr/local/bin/
 
-
+      - name: SSH via Cloudflare Tunnel and update project
+        env:
+          CF_CLIENT_ID: ${{ secrets.CF_CLIENT_ID }}
+          CF_CLIENT_SECRET: ${{ secrets.CF_CLIENT_SECRET }}
+          PI_USER: ${{ secrets.PI_USER }}
+          PI_HOST: ${{ secrets.PI_HOST }}
+        run: |
+          cloudflared access ssh --hostname $PI_HOST --id $CF_CLIENT_ID --secret $CF_CLIENT_SECRET \
+          --command "cd ~/work-site && git pull && sudo systemctl restart docker"
