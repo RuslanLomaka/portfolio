@@ -12,19 +12,20 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install Cloudflared
+      - name: Setup SSH access to Pi via Tailscale
         run: |
-          curl -L https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64 -o cloudflared
-          chmod +x cloudflared
-          sudo mv cloudflared /usr/local/bin/
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          echo -o StrictHostKeyChecking=no ${{ secrets.SSH_HOST }} > ~/.ssh/known_hosts
 
-      - name: SSH via Cloudflare Tunnel and update project
+      - name: Connect via SSH and update project
         env:
-          CF_CLIENT_ID: ${{ secrets.CF_CLIENT_ID }}
-          CF_CLIENT_SECRET: ${{ secrets.CF_CLIENT_SECRET }}
-          PI_USER: ${{ secrets.PI_USER }}
-          PI_HOST: ${{ secrets.PI_HOST }}
+          SSH_USER: ${{ secrets.SSH_USER }}
+          SSH_HOST: ${{ secrets.SSH_HOST }}
         run: |
-          cloudflared access ssh --hostname $PI_HOST --id $CF_CLIENT_ID --secret $CF_CLIENT_SECRET \
-          --command "cd ~/work-site && git pull && sudo systemctl restart docker"
-
+          ssh -i ~/.ssh/id_ed25519 "$SSH_USER@$SSH_HOST" '
+            cd ~/work-site &&
+            git pull &&
+            sudo systemctl restart docker
+          '
