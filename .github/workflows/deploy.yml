@@ -12,20 +12,22 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup SSH access to Pi via Tailscale
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_ed25519
-          chmod 600 ~/.ssh/id_ed25519
-          echo -o StrictHostKeyChecking=no ${{ secrets.SSH_HOST }} > ~/.ssh/known_hosts
+      - name: Start Tailscale
+        uses: tailscale/github-action@v2
+        with:
+          authkey: ${{ secrets.TS_AUTHKEY }}
 
-      - name: Connect via SSH and update project
+      - name: SSH into Raspberry Pi and update project
         env:
+          SSH_KEY: ${{ secrets.SSH_KEY }}
           SSH_USER: ${{ secrets.SSH_USER }}
           SSH_HOST: ${{ secrets.SSH_HOST }}
         run: |
-          ssh -i ~/.ssh/id_ed25519 "$SSH_USER@$SSH_HOST" '
-            cd ~/work-site &&
-            git pull &&
+          echo "$SSH_KEY" > key.pem
+          chmod 600 key.pem
+
+          ssh -o StrictHostKeyChecking=no -i key.pem "$SSH_USER@$SSH_HOST" << 'EOF'
+            cd ~/work-site
+            git pull
             sudo systemctl restart docker
-          '
+          EOF
