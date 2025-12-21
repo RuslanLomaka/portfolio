@@ -57,6 +57,13 @@
         .text { max-width: 500px; text-align: left; }
         a { color: #0066cc; text-decoration: none; }
         a:hover { text-decoration: underline; }
+
+        /* small list styling */
+        ul {
+            margin: .5rem 0 1rem 1.1rem;
+            padding: 0;
+        }
+        li { margin: .35rem 0; }
     </style>
 </head>
 
@@ -72,22 +79,69 @@
 <div class="content">
     <img src="photo.jpeg" alt="Ruslan Lomaka photo" class="photo">
     <div class="text">
-        <p id="desc-en">
-            I’m <strong>Ruslan Lomaka</strong> — a software tinkerer, homelab enthusiast, and lifelong learner.<br>
-            I’ve successfully completed the <strong>GoIT Java Developer</strong> course, mastering Java Core, Spring Boot, Hibernate, REST APIs, and CI/CD.<br>
-            My portfolio includes a <em>Link Shortener Microservice</em>, <em>Telegram Currency Bot</em>, and a self-hosted Raspberry Pi DevOps setup.
-        </p>
-        <p id="desc-ua" hidden>
-            Я — <strong>Руслан Ломака</strong>, розробник-ентузіаст, прихильник домашніх серверів та постійного навчання.<br>
-            Я успішно завершив курс <strong>GoIT Java Developer</strong>, опанувавши Java Core, Spring Boot, Hibernate, REST API та CI/CD.<br>
-            У моєму портфоліо — <em>Link Shortener Microservice</em>, <em>Telegram Currency Bot</em> та власний DevOps-сервер на Raspberry Pi.
-        </p>
-        <p id="desc-de" hidden>
-            Ich bin <strong>Ruslan Lomaka</strong> – Software-Tüftler, Homelab-Fan und lebenslanger Lerner.<br>
-            Ich habe erfolgreich den <strong>GoIT Java Developer</strong> Kurs abgeschlossen, mit Schwerpunkt auf Java Core, Spring Boot, Hibernate, REST APIs und CI/CD.<br>
-            Zu meinem Portfolio gehören ein <em>Link Shortener Microservice</em>, ein <em>Telegram Währungs-Bot</em> und eine selbstgehostete Raspberry-Pi-DevOps-Umgebung.
-        </p>
 
+        <!-- UPDATED MAIN TEXT -->
+        <div id="desc-en">
+            <p>
+                I’m <strong>Ruslan Lomaka</strong> — a software tinkerer, homelab enthusiast, and lifelong learner.
+                I’ve successfully completed the <strong>GoIT Java Developer</strong> course, mastering Java Core, Spring Boot,
+                Hibernate, REST APIs, and CI/CD.
+            </p>
+
+            <p><strong>But the certificate is just a checkpoint. What matters more is what I’ve already built:</strong></p>
+            <ul>
+                <li>A fast, scalable <strong>Link Shortener microservice</strong></li>
+                <li>A <strong>Telegram bot</strong> providing real-time currency updates</li>
+                <li>A self-hosted DevOps setup running on <strong>Raspberry Pi</strong>, fully automated</li>
+            </ul>
+
+            <p>
+                I’m not the developer with the longest work history — but I am the one who puts in the work,
+                learns aggressively, experiments constantly, and finishes what he starts.
+            </p>
+        </div>
+
+        <div id="desc-ua" hidden>
+            <p>
+                Я — <strong>Руслан Ломака</strong>, розробник-ентузіаст, прихильник домашніх серверів та постійного навчання.
+                Я успішно завершив курс <strong>GoIT Java Developer</strong>, опанувавши Java Core, Spring Boot,
+                Hibernate, REST API та CI/CD.
+            </p>
+
+            <p><strong>Але сертифікат — це лише контрольна точка. Важливіше те, що я вже створив:</strong></p>
+            <ul>
+                <li>Швидкий і масштабований <strong>мікросервіс скорочення посилань</strong></li>
+                <li><strong>Telegram-бот</strong> із курсами валют у реальному часі</li>
+                <li>Повністю автоматизований <strong>DevOps-сетап на Raspberry Pi</strong> (self-hosted)</li>
+            </ul>
+
+            <p>
+                Я не розробник із найбільшим досвідом — але я той, хто реально вкладається,
+                швидко вчиться, постійно експериментує та доводить справи до кінця.
+            </p>
+        </div>
+
+        <div id="desc-de" hidden>
+            <p>
+                Ich bin <strong>Ruslan Lomaka</strong> – Software-Tüftler, Homelab-Fan und lebenslanger Lerner.
+                Ich habe erfolgreich den <strong>GoIT Java Developer</strong>-Kurs abgeschlossen und dabei Java Core,
+                Spring Boot, Hibernate, REST APIs und CI/CD gelernt und angewendet.
+            </p>
+
+            <p><strong>Aber das Zertifikat ist nur ein Meilenstein. Wichtiger ist, was ich bereits gebaut habe:</strong></p>
+            <ul>
+                <li>Einen schnellen, skalierbaren <strong>Link-Shortener-Microservice</strong></li>
+                <li>Einen <strong>Telegram-Bot</strong> mit Echtzeit-Währungsupdates</li>
+                <li>Ein vollständig automatisiertes, self-hosted <strong>DevOps-Setup auf Raspberry Pi</strong></li>
+            </ul>
+
+            <p>
+                Ich bin nicht der Entwickler mit der längsten Berufserfahrung — aber ich bin der, der liefert:
+                konsequent arbeitet, schnell lernt, ständig experimentiert und Dinge zu Ende bringt.
+            </p>
+        </div>
+
+        <!-- keep certificate image and info as-is -->
         <img src="cert.jpeg" alt="GoIT Java Certificate" class="cert">
 
         <h2 id="cert-title-en">About the Certificate</h2>
@@ -146,6 +200,7 @@
             de: "🎉 Ich habe endlich mein Java-Zertifikat erhalten! 🎉"
         };
         document.getElementById("title").innerHTML = titles[lang];
+
         langs.forEach(l => {
             document.querySelectorAll(`[id$='-${l}']`).forEach(el => el.hidden = l !== lang);
         });
