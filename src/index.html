@@ -17,28 +17,29 @@
             color: #222;
             text-align: center;
         }
-        h1 { font-size: 2.6rem; margin: 0.5rem 0; }
+        h1 { font-size: 2.6rem; margin: 1rem 0 2rem; }
         h2 { margin-top: 2rem; }
-        p { max-width: 700px; margin: .5rem auto; line-height: 1.6; }
+        p { max-width: 720px; margin: .6rem auto; line-height: 1.65; }
+        ul { max-width: 720px; margin: .6rem auto 1rem; text-align: left; }
+        li { margin: .4rem 0; }
         footer { margin-top: 2rem; font-size: .875rem; color: #666; }
-        .lang-btns { margin: 1rem 0; }
+        .lang-btns { margin-bottom: 1.5rem; }
         button {
             margin: 0 .3rem;
-            padding: .4rem .8rem;
+            padding: .45rem .9rem;
             border: none;
-            border-radius: 6px;
+            border-radius: 8px;
             background: #ddd;
             cursor: pointer;
             font-weight: 600;
         }
-        button.active { background: #333; color: #fff; }
+        button.active { background: #222; color: #fff; }
         .content {
             display: flex;
             flex-wrap: wrap;
-            align-items: center;
+            align-items: flex-start;
             justify-content: center;
-            gap: 2rem;
-            margin-top: 1rem;
+            gap: 2.5rem;
         }
         img.photo {
             width: 200px;
@@ -50,124 +51,227 @@
         img.cert {
             width: 100%;
             max-width: 720px;
-            border-radius: 10px;
+            border-radius: 12px;
             box-shadow: 0 0 12px rgba(0,0,0,0.15);
-            margin: 2rem 0 1rem 0;
+            margin: 2rem 0 1rem;
         }
-        .text { max-width: 500px; text-align: left; }
+        .text { max-width: 720px; text-align: left; }
         a { color: #0066cc; text-decoration: none; }
         a:hover { text-decoration: underline; }
-
-        /* small list styling */
-        ul {
-            margin: .5rem 0 1rem 1.1rem;
-            padding: 0;
-        }
-        li { margin: .35rem 0; }
     </style>
 </head>
 
 <body>
+
 <div class="lang-btns">
     <button id="en" class="active">🇬🇧 English</button>
     <button id="ua">🇺🇦 Українська</button>
     <button id="de">🇩🇪 Deutsch</button>
 </div>
 
-<h1 id="title">🎉 I finally got my Java Certificate! 🎉</h1>
+<h1 id="title">Smart enough to learn fast. Disciplined enough to finish.</h1>
 
 <div class="content">
     <img src="photo.jpeg" alt="Ruslan Lomaka photo" class="photo">
+
     <div class="text">
 
-        <!-- UPDATED MAIN TEXT -->
+        <!-- ENGLISH -->
         <div id="desc-en">
+            <p><strong>Smart enough to learn fast. Disciplined enough to finish.</strong></p>
+
             <p>
-                I’m <strong>Ruslan Lomaka</strong> — a software tinkerer, homelab enthusiast, and lifelong learner.
-                I’ve successfully completed the <strong>GoIT Java Developer</strong> course, mastering Java Core, Spring Boot,
-                Hibernate, REST APIs, and CI/CD.
+                I’m <strong>Ruslan Lomaka</strong>, a software developer, homelab enthusiast, and lifelong learner
+                who enjoys building tools that actually work and solve real problems.
             </p>
 
-            <p><strong>But the certificate is just a checkpoint. What matters more is what I’ve already built:</strong></p>
+            <p>
+                I’ve officially completed the <strong>GoIT Java Developer</strong> course — 30 modules,
+                120+ hours of hands-on coding, and two full team projects.
+                Along the way, I worked extensively with Java Core, Spring Boot, Hibernate,
+                REST API development, and CI/CD workflows.
+            </p>
+
+            <p>
+                <strong>But the certificate is just a checkpoint.</strong>
+                What really matters is what I’ve already built — and what I’m actively building right now.
+            </p>
+
             <ul>
                 <li>A fast, scalable <strong>Link Shortener microservice</strong></li>
-                <li>A <strong>Telegram bot</strong> providing real-time currency updates</li>
-                <li>A self-hosted DevOps setup running on <strong>Raspberry Pi</strong>, fully automated</li>
+                <li>A <strong>Telegram bot</strong> delivering real-time currency updates</li>
+                <li>
+                    A <strong>self-hosted DevOps environment on Raspberry Pi</strong> —
+                    including <em>this very site you’re visiting right now</em>
+                </li>
             </ul>
 
             <p>
-                I’m not the developer with the longest work history — but I am the one who puts in the work,
-                learns aggressively, experiments constantly, and finishes what he starts.
+                I’m currently working on my <strong>CS50x final web project</strong> —
+                a platform that allows anyone to create <strong>any quiz they can imagine in seconds</strong>.
+                My next focus is consolidating all these services on my Raspberry Pi and exposing them publicly,
+                so they’re not just screenshots or promises —
+                they’re live systems you can actually <strong>touch, test, and use</strong>.
+            </p>
+
+            <p>
+                I’m not the developer with the longest work history —
+                but I am the one who puts in the work, learns aggressively,
+                experiments constantly, and finishes what he starts.
+            </p>
+
+            <p>
+                Beyond technical skills, I take communication and integration seriously.
+                To improve my German, I’ve completed <strong>three months of language school</strong>,
+                invested <strong>200+ hours in private 1-on-1 lessons</strong>,
+                and logged <strong>1,000+ hours on Duolingo</strong>.
+                I’m disciplined, consistent, and fully committed to growing as both an engineer
+                and a professional in an international environment.
             </p>
         </div>
 
+        <!-- UKRAINIAN (FULL) -->
         <div id="desc-ua" hidden>
+            <p><strong>Достатньо розумний, щоб швидко вчитися. Достатньо дисциплінований, щоб доводити справи до кінця.</strong></p>
+
             <p>
-                Я — <strong>Руслан Ломака</strong>, розробник-ентузіаст, прихильник домашніх серверів та постійного навчання.
-                Я успішно завершив курс <strong>GoIT Java Developer</strong>, опанувавши Java Core, Spring Boot,
-                Hibernate, REST API та CI/CD.
+                Я <strong>Руслан Ломака</strong> — розробник програмного забезпечення, прихильник homelab-підходу
+                та людина, яка постійно навчається. Мені подобається створювати інструменти, які реально працюють
+                і вирішують практичні задачі.
             </p>
 
-            <p><strong>Але сертифікат — це лише контрольна точка. Важливіше те, що я вже створив:</strong></p>
+            <p>
+                Я офіційно завершив курс <strong>GoIT Java Developer</strong> — 30 модулів,
+                понад 120 годин практичного кодування та два повноцінні командні проєкти.
+                У процесі я активно працював із Java Core, Spring Boot, Hibernate, розробкою REST API та CI/CD.
+            </p>
+
+            <p>
+                <strong>Але сертифікат — це лише контрольна точка.</strong>
+                Насправді важливіше те, що я вже створив — і що зараз активно розробляю.
+            </p>
+
             <ul>
                 <li>Швидкий і масштабований <strong>мікросервіс скорочення посилань</strong></li>
-                <li><strong>Telegram-бот</strong> із курсами валют у реальному часі</li>
-                <li>Повністю автоматизований <strong>DevOps-сетап на Raspberry Pi</strong> (self-hosted)</li>
+                <li><strong>Telegram-бот</strong> з оновленнями валют у реальному часі</li>
+                <li>
+                    <strong>Self-hosted DevOps-середовище на Raspberry Pi</strong> —
+                    включно з <em>цим сайтом, на якому ви зараз знаходитесь</em>
+                </li>
             </ul>
 
             <p>
-                Я не розробник із найбільшим досвідом — але я той, хто реально вкладається,
+                Зараз я працюю над фінальним вебпроєктом <strong>CS50x</strong> —
+                платформою, яка дозволяє створювати <strong>будь-які квізи за секунди</strong>.
+                Мій наступний фокус — зібрати всі ці сервіси на Raspberry Pi та відкрити доступ до них,
+                щоб це були не скріншоти чи обіцянки, а живі системи, які можна
+                <strong>натиснути, протестувати й реально використати</strong>.
+            </p>
+
+            <p>
+                Я не розробник із найбільшим стажем — але я той, хто вкладається,
                 швидко вчиться, постійно експериментує та доводить справи до кінця.
+            </p>
+
+            <p>
+                Окрім технічних навичок, я серйозно ставлюся до комунікації та інтеграції.
+                Щоб покращити німецьку, я пройшов <strong>три місяці мовної школи</strong>,
+                інвестував <strong>200+ годин у приватні 1-на-1 онлайн-уроки</strong>
+                та набрав <strong>1 000+ годин у Duolingo</strong>.
+                Я дисциплінований, послідовний і повністю налаштований рости як інженер
+                і як професіонал у міжнародному середовищі.
             </p>
         </div>
 
+        <!-- GERMAN (FULL) -->
         <div id="desc-de" hidden>
+            <p><strong>Klug genug, um schnell zu lernen. Diszipliniert genug, um Dinge zu Ende zu bringen.</strong></p>
+
             <p>
-                Ich bin <strong>Ruslan Lomaka</strong> – Software-Tüftler, Homelab-Fan und lebenslanger Lerner.
-                Ich habe erfolgreich den <strong>GoIT Java Developer</strong>-Kurs abgeschlossen und dabei Java Core,
-                Spring Boot, Hibernate, REST APIs und CI/CD gelernt und angewendet.
+                Ich bin <strong>Ruslan Lomaka</strong> — Softwareentwickler, Homelab-Enthusiast und lebenslanger Lerner.
+                Ich baue gern Tools, die wirklich funktionieren und echte Probleme lösen.
             </p>
 
-            <p><strong>Aber das Zertifikat ist nur ein Meilenstein. Wichtiger ist, was ich bereits gebaut habe:</strong></p>
+            <p>
+                Ich habe den <strong>GoIT Java Developer</strong>-Kurs offiziell abgeschlossen —
+                30 Module, 120+ Stunden praxisnahes Coding und zwei vollständige Teamprojekte.
+                Dabei habe ich intensiv mit Java Core, Spring Boot, Hibernate,
+                REST-API-Entwicklung und CI/CD-Workflows gearbeitet.
+            </p>
+
+            <p>
+                <strong>Aber das Zertifikat ist nur ein Meilenstein.</strong>
+                Entscheidend ist, was ich bereits gebaut habe — und woran ich gerade aktiv arbeite.
+            </p>
+
             <ul>
                 <li>Einen schnellen, skalierbaren <strong>Link-Shortener-Microservice</strong></li>
                 <li>Einen <strong>Telegram-Bot</strong> mit Echtzeit-Währungsupdates</li>
-                <li>Ein vollständig automatisiertes, self-hosted <strong>DevOps-Setup auf Raspberry Pi</strong></li>
+                <li>
+                    Eine vollständig automatisierte, self-hosted <strong>DevOps-Umgebung auf Raspberry Pi</strong> —
+                    einschließlich <em>dieser Website, auf der Sie gerade sind</em>
+                </li>
             </ul>
 
             <p>
-                Ich bin nicht der Entwickler mit der längsten Berufserfahrung — aber ich bin der, der liefert:
-                konsequent arbeitet, schnell lernt, ständig experimentiert und Dinge zu Ende bringt.
+                Aktuell arbeite ich an meinem <strong>CS50x Final-Webprojekt</strong> —
+                einer Plattform, mit der man <strong>beliebige Quizze in Sekunden erstellen</strong> kann.
+                Als Nächstes will ich all diese Services auf meinem Raspberry Pi bündeln
+                und öffentlich zugänglich machen, damit es nicht nur Screenshots oder Versprechen sind,
+                sondern Live-Systeme, die man wirklich <strong>anfassen, testen und nutzen</strong> kann.
+            </p>
+
+            <p>
+                Ich bin nicht der Entwickler mit der längsten Berufserfahrung —
+                aber ich bin der, der konsequent arbeitet, schnell lernt,
+                ständig experimentiert und Dinge zuverlässig zu Ende bringt.
+            </p>
+
+            <p>
+                Neben den technischen Skills nehme ich Kommunikation und Integration ernst.
+                Um mein Deutsch zu verbessern, habe ich <strong>drei Monate Sprachschule</strong> gemacht,
+                <strong>200+ Stunden private 1-zu-1 Online-Unterrichtsstunden</strong> investiert
+                und <strong>1.000+ Stunden auf Duolingo</strong> absolviert.
+                Ich bin diszipliniert, konstant dran und voll motiviert, mich sowohl als Engineer
+                als auch als Profi im internationalen Umfeld weiterzuentwickeln.
             </p>
         </div>
 
-        <!-- keep certificate image and info as-is -->
         <img src="cert.jpeg" alt="GoIT Java Certificate" class="cert">
 
         <h2 id="cert-title-en">About the Certificate</h2>
         <h2 id="cert-title-ua" hidden>Про сертифікат</h2>
         <h2 id="cert-title-de" hidden>Über das Zertifikat</h2>
 
-        <p id="cert-info-en">
-            The <strong>GoIT Java Developer Certificate</strong> confirms completion of 30 modules (Java Core + Java Developer),
-            2 team projects, and 120+ hours of practical work.
-            <br><br>
-            <strong>Date:</strong> 31 Oct 2025<br>
-            <strong>Unique ID:</strong> 41206<br>
+        <ul id="cert-list-en">
+            <li>30 modules (Java Core + Java Developer)</li>
+            <li>2 team projects</li>
+            <li>120+ hours of practical work</li>
+        </ul>
+        <ul id="cert-list-ua" hidden>
+            <li>30 модулів (Java Core + Java Developer)</li>
+            <li>2 командні проєкти</li>
+            <li>120+ годин практичної роботи</li>
+        </ul>
+        <ul id="cert-list-de" hidden>
+            <li>30 Module (Java Core + Java Developer)</li>
+            <li>2 Teamprojekte</li>
+            <li>120+ Stunden praktische Arbeit</li>
+        </ul>
+
+        <p id="cert-meta-en">
+            <strong>Issued:</strong> 31 October 2025<br>
+            <strong>Certificate ID:</strong> 41206<br>
             <strong>Issuer:</strong> GoIT Global — <a href="https://goit.global" target="_blank">goit.global</a>
         </p>
-        <p id="cert-info-ua" hidden>
-            <strong>Сертифікат GoIT Java Developer</strong> підтверджує проходження 30 модулів (Java Core + Java Developer),
-            2 командних проєктів та понад 120 годин практики.<br><br>
-            <strong>Дата:</strong> 31 жовтня 2025<br>
-            <strong>Унікальний ID:</strong> 41206<br>
+        <p id="cert-meta-ua" hidden>
+            <strong>Видано:</strong> 31 жовтня 2025<br>
+            <strong>ID сертифіката:</strong> 41206<br>
             <strong>Видавець:</strong> GoIT Global — <a href="https://goit.global" target="_blank">goit.global</a>
         </p>
-        <p id="cert-info-de" hidden>
-            Das <strong>GoIT Java Developer Zertifikat</strong> bestätigt den Abschluss von 30 Modulen (Java Core + Java Developer),
-            2 Teamprojekten und über 120 Stunden praktischer Arbeit.<br><br>
-            <strong>Datum:</strong> 31. Oktober 2025<br>
-            <strong>Einzigartige ID:</strong> 41206<br>
+        <p id="cert-meta-de" hidden>
+            <strong>Ausgestellt:</strong> 31. Oktober 2025<br>
+            <strong>Zertifikat-ID:</strong> 41206<br>
             <strong>Aussteller:</strong> GoIT Global — <a href="https://goit.global" target="_blank">goit.global</a>
         </p>
 
@@ -176,13 +280,14 @@
             <a href="https://linkedin.com/in/ruslan-lomaka" target="_blank">LinkedIn</a>.
         </p>
         <p id="links-ua" hidden>
-            Мене можна знайти на <a href="https://github.com/RuslanLomaka" target="_blank">GitHub</a>
-            і <a href="https://linkedin.com/in/ruslan-lomaka" target="_blank">LinkedIn</a>.
-        </p>
-        <p id="links-de" hidden>
-            Finden Sie mich auf <a href="https://github.com/RuslanLomaka" target="_blank">GitHub</a> und
+            Мене можна знайти на <a href="https://github.com/RuslanLomaka" target="_blank">GitHub</a> та
             <a href="https://linkedin.com/in/ruslan-lomaka" target="_blank">LinkedIn</a>.
         </p>
+        <p id="links-de" hidden>
+            Sie finden mich auf <a href="https://github.com/RuslanLomaka" target="_blank">GitHub</a> und
+            <a href="https://linkedin.com/in/ruslan-lomaka" target="_blank">LinkedIn</a>.
+        </p>
+
     </div>
 </div>
 
@@ -194,27 +299,31 @@
 
     function switchLang(lang) {
         buttons.forEach(b => b.classList.toggle("active", b.id === lang));
-        const titles = {
-            en: "🎉 I finally got my Java Certificate! 🎉",
-            ua: "🎉 Нарешті отримав сертифікат Java-розробника! 🎉",
-            de: "🎉 Ich habe endlich mein Java-Zertifikat erhalten! 🎉"
-        };
-        document.getElementById("title").innerHTML = titles[lang];
 
+        // main text
         langs.forEach(l => {
-            document.querySelectorAll(`[id$='-${l}']`).forEach(el => el.hidden = l !== lang);
+            document.getElementById("desc-" + l).hidden = l !== lang;
+        });
+
+        // certificate headings + lists + meta
+        langs.forEach(l => {
+            document.getElementById("cert-title-" + l).hidden = l !== lang;
+            document.getElementById("cert-list-" + l).hidden = l !== lang;
+            document.getElementById("cert-meta-" + l).hidden = l !== lang;
+            document.getElementById("links-" + l).hidden = l !== lang;
         });
     }
 
-    buttons.forEach(btn => {
-        btn.addEventListener("click", () => switchLang(btn.id));
-    });
+    buttons.forEach(btn =>
+        btn.addEventListener("click", () => switchLang(btn.id))
+    );
 
     // detect browser language on load
-    const browserLang = navigator.language || navigator.userLanguage || "en";
+    const browserLang = navigator.language || "en";
     if (browserLang.startsWith("uk")) switchLang("ua");
     else if (browserLang.startsWith("de")) switchLang("de");
     else switchLang("en");
 </script>
+
 </body>
 </html>
