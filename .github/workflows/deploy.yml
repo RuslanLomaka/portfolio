@@ -30,6 +30,5 @@ jobs:
 
           ssh -o StrictHostKeyChecking=no -i key.pem "$SSH_USER@$SSH_HOST" << 'EOF'
             cd ~/work-site &&
-            git pull &&
-            sudo cp -r src/* /var/www/work/
+            git pull
           EOF
