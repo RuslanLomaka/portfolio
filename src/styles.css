@@ -38,6 +38,12 @@ h2 { margin: 2rem 0 0.75rem; }
 p { margin: .6rem auto; line-height: 1.7; color: var(--muted); }
 ul { margin: .6rem auto 1rem; padding-left: 1.1rem; text-align: left; }
 li { margin: .4rem 0; line-height: 1.6; }
+li em {
+    display: block;
+    margin-top: .15rem;
+    color: var(--muted);
+    font-size: .94em;
+}
 footer { margin-top: 2rem; font-size: .9rem; color: #666; }
 
 .lang-btns {
