@@ -37,7 +37,10 @@ function switchLang(lang) {
 }
 
 buttons.forEach((btn) => {
-    btn.addEventListener('click', () => switchLang(btn.dataset.lang));
+    btn.addEventListener('click', () => {
+        switchLang(btn.dataset.lang);
+        btn.blur();
+    });
 });
 
 const browserLang = (navigator.language || 'en').toLowerCase();
