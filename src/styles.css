@@ -93,7 +93,7 @@ img.photo {
     object-fit: cover;
     box-shadow: var(--shadow);
     justify-self: center;
-    transform: translateY(30px);
+    transform: translateY(80px);
 }
 
 img.cert {
