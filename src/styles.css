@@ -26,7 +26,7 @@ html {
 body {
     min-height: 100vh;
     margin: 0;
-    padding: 26px;
+    padding: 14px 24px 24px;
     overflow-x: hidden;
     background:
         linear-gradient(rgba(190, 255, 117, 0.025) 1px, transparent 1px),
@@ -71,19 +71,21 @@ body::before {
 }
 
 main {
+    position: relative;
     width: min(1220px, 100%);
     margin: 0 auto;
 }
 
 .lang-btns {
-    position: sticky;
-    top: 18px;
+    position: absolute;
+    top: 0;
+    right: 0;
     z-index: 10;
     display: flex;
     width: max-content;
     max-width: 100%;
-    margin: 0 0 64px auto;
-    padding: 5px;
+    margin: 0;
+    padding: 3px;
     gap: 3px;
     border: 1px solid var(--line);
     border-radius: 999px;
@@ -93,14 +95,14 @@ main {
 }
 
 .lang-btns button {
-    min-height: 40px;
-    padding: 0 16px;
+    min-height: 32px;
+    padding: 0 11px;
     border: 0;
     border-radius: 999px;
     background: transparent;
     color: var(--muted);
     font: inherit;
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     font-weight: 700;
     cursor: pointer;
     transition: color 180ms ease, background 180ms ease, transform 180ms ease;
@@ -124,13 +126,13 @@ main {
 h1 {
     position: relative;
     max-width: 1110px;
-    margin: 0 0 90px;
-    padding-top: 28px;
+    margin: 0 0 38px;
+    padding-top: 30px;
     font-family: "Bahnschrift", "Arial Narrow", Arial, sans-serif;
-    font-size: clamp(3.6rem, 8.6vw, 7.8rem);
+    font-size: clamp(3.2rem, 6.4vw, 5.8rem);
     font-weight: 650;
     letter-spacing: -0.064em;
-    line-height: 0.86;
+    line-height: 0.88;
 }
 
 h1::before {
@@ -163,8 +165,8 @@ h1 span:last-child {
 
 .content {
     display: grid;
-    grid-template-columns: minmax(270px, 0.72fr) minmax(0, 1.28fr);
-    column-gap: 66px;
+    grid-template-columns: minmax(210px, 0.56fr) minmax(0, 1.44fr);
+    column-gap: 46px;
     row-gap: 24px;
     align-items: center;
 }
@@ -182,7 +184,7 @@ h1 span:last-child {
     position: relative;
     grid-column: 1;
     grid-row: 1;
-    width: min(340px, 100%);
+    width: min(250px, 100%);
     aspect-ratio: 4 / 5;
     place-self: center;
     isolation: isolate;
@@ -204,7 +206,7 @@ h1 span:last-child {
     bottom: 28px;
     z-index: 3;
     width: 14px;
-    height: 82px;
+    height: 64px;
     border: 0;
     border-radius: 999px;
     background: linear-gradient(135deg, var(--lime), var(--mint));
@@ -237,13 +239,13 @@ img.photo {
     grid-column: 2;
     grid-row: 1;
     margin: 0;
-    padding: 12px 0 12px 34px;
+    padding: 8px 0 8px 28px;
     border-left: 2px solid var(--lime);
     color: var(--text);
-    font-size: clamp(1.25rem, 2.15vw, 1.75rem);
+    font-size: clamp(1.08rem, 1.6vw, 1.38rem);
     font-weight: 400;
     letter-spacing: -0.018em;
-    line-height: 1.48;
+    line-height: 1.42;
     text-wrap: pretty;
 }
 
@@ -251,7 +253,7 @@ img.photo {
     display: block;
     width: 74px;
     height: 2px;
-    margin-top: 30px;
+    margin-top: 20px;
     background: linear-gradient(90deg, var(--mint), transparent);
     content: "";
 }
@@ -268,10 +270,10 @@ img.photo {
 .projects-heading {
     grid-column: 1 / -1;
     grid-row: 2;
-    margin: 128px 0 16px;
+    margin: 48px 0 12px;
     color: var(--text);
     font-family: "Bahnschrift", "Arial Narrow", Arial, sans-serif;
-    font-size: clamp(2.7rem, 5vw, 4.8rem);
+    font-size: clamp(2.2rem, 3.8vw, 3.7rem);
     font-weight: 600;
     letter-spacing: -0.045em;
     line-height: 1;
@@ -303,9 +305,9 @@ img.photo {
 
 .projects-list li {
     position: relative;
-    min-height: 190px;
+    min-height: 160px;
     margin: 0;
-    padding: 48px clamp(30px, 8vw, 110px) 30px 30px;
+    padding: 42px clamp(30px, 8vw, 110px) 25px 30px;
     overflow: hidden;
     border: 1px solid var(--line);
     border-radius: 24px;
@@ -322,7 +324,7 @@ img.photo {
 
 .projects-list li::before {
     position: absolute;
-    top: 25px;
+    top: 21px;
     left: 30px;
     width: 52px;
     height: 2px;
@@ -332,7 +334,7 @@ img.photo {
 
 .projects-list li::after {
     position: absolute;
-    top: 30px;
+    top: 24px;
     right: 28px;
     width: 7px;
     height: 7px;
@@ -418,18 +420,31 @@ img.photo {
     justify-self: center;
 }
 
+.certificate-panel {
+    margin: 70px auto 0;
+    padding: 18px;
+    border: 1px solid var(--line-bright);
+    border-radius: 30px;
+    background:
+        linear-gradient(145deg, rgba(190, 255, 117, 0.08), transparent 42%),
+        var(--surface-solid);
+    box-shadow: var(--shadow);
+}
+
 img.cert {
     display: block;
-    margin: 88px auto 24px;
+    width: 100%;
+    margin: 0;
     border: 1px solid var(--line);
-    border-radius: 26px;
-    box-shadow: var(--shadow);
+    border-radius: 18px;
+    box-shadow: 0 18px 55px rgba(0, 0, 0, 0.22);
 }
 
 .certificate-details {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    margin: 28px auto 0;
+    width: 100%;
+    margin: 16px 0 0;
     border: 1px solid var(--line);
     border-radius: 20px;
     background: var(--surface);
@@ -490,15 +505,19 @@ footer {
 
 @media (max-width: 840px) {
     body {
-        padding: 20px;
+        padding: 14px 20px 20px;
     }
 
     .lang-btns {
-        margin-bottom: 48px;
+        position: relative;
+        top: auto;
+        right: auto;
+        margin: 0 0 38px auto;
     }
 
     h1 {
-        margin-bottom: 66px;
+        margin-bottom: 48px;
+        padding-top: 0;
         font-size: clamp(3.2rem, 13vw, 6rem);
     }
 
@@ -521,7 +540,7 @@ footer {
 
     .projects-heading {
         grid-row: 3;
-        margin-top: 76px;
+        margin-top: 58px;
     }
 
     .projects-list {
@@ -535,10 +554,8 @@ footer {
     }
 
     .lang-btns {
-        position: relative;
-        top: auto;
         width: 100%;
-        margin-bottom: 38px;
+        margin-bottom: 32px;
     }
 
     .lang-btns button {
@@ -570,7 +587,7 @@ footer {
 
     .projects-list li {
         min-height: 0;
-        padding: 48px 22px 24px;
+        padding: 44px 22px 24px;
         border-radius: 20px;
     }
 
@@ -578,9 +595,14 @@ footer {
         padding: 21px 20px;
     }
 
+    .certificate-panel {
+        margin-top: 56px;
+        padding: 10px;
+        border-radius: 22px;
+    }
+
     img.cert {
-        margin-top: 64px;
-        border-radius: 20px;
+        border-radius: 14px;
     }
 
     .certificate-details {
