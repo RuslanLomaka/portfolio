@@ -82,14 +82,14 @@ main {
     right: 0;
     z-index: 10;
     display: flex;
-    width: 108px;
+    width: 132px;
     max-width: 100%;
     margin: 0;
     padding: 3px;
     gap: 2px;
     border: 1px solid var(--line);
     border-radius: 999px;
-    background: rgba(8, 31, 25, 0.86);
+    background: var(--lime);
     box-shadow: 0 16px 48px rgba(0, 0, 0, 0.24);
     overflow: hidden;
     backdrop-filter: blur(18px);
@@ -120,12 +120,23 @@ main {
 }
 
 .lang-btns:not(:hover):not(:focus-within) button:not(.active) {
-    flex-basis: 0;
+    flex: 0 0 0;
     width: 0;
     padding-right: 0;
     padding-left: 0;
     opacity: 0;
     pointer-events: none;
+}
+
+.lang-btns:not(:hover):not(:focus-within) button.active {
+    flex: 1 1 100%;
+    background: transparent;
+    color: var(--bg-deep);
+}
+
+.lang-btns:hover button,
+.lang-btns:focus-within button {
+    flex: 1 1 0;
 }
 
 .lang-btns button:hover {
@@ -200,35 +211,35 @@ h1 span:last-child {
 
 .portrait-shell::before {
     position: absolute;
-    inset: -15px 18px 18px -15px;
+    inset: -13px;
     z-index: -2;
     border: 1px solid var(--line-bright);
-    border-radius: 34px;
-    background: linear-gradient(145deg, rgba(190, 255, 117, 0.2), rgba(88, 234, 209, 0.04));
+    border-radius: 50% 50% 28px 28px / 36% 36% 28px 28px;
+    background: linear-gradient(145deg, rgba(201, 255, 139, 0.2), rgba(88, 234, 209, 0.06));
     content: "";
 }
 
 .portrait-shell::after {
     position: absolute;
-    right: -14px;
-    bottom: 28px;
+    right: -10px;
+    bottom: 30px;
     z-index: 3;
-    width: 14px;
-    height: 64px;
+    width: 18px;
+    height: 18px;
     border: 0;
     border-radius: 999px;
     background: linear-gradient(135deg, var(--lime), var(--mint));
-    box-shadow: 0 0 42px rgba(190, 255, 117, 0.35);
+    box-shadow: 0 0 0 7px var(--bg), 0 0 34px rgba(190, 255, 117, 0.4);
     content: "";
 }
 
 .portrait-orbit {
     position: absolute;
-    inset: 22px -24px -22px 24px;
+    inset: 18px -20px -18px 20px;
     z-index: -3;
     border: 1px solid rgba(88, 234, 209, 0.24);
-    border-radius: 32px;
-    background: rgba(88, 234, 209, 0.035);
+    border-radius: 50% 50% 28px 28px / 36% 36% 28px 28px;
+    background: rgba(88, 234, 209, 0.045);
 }
 
 img.photo {
@@ -236,7 +247,7 @@ img.photo {
     width: 100%;
     height: 100%;
     border: 1px solid rgba(242, 255, 249, 0.24);
-    border-radius: 28px;
+    border-radius: 50% 50% 22px 22px / 34% 34% 22px 22px;
     box-shadow: var(--shadow);
     object-fit: cover;
     filter: saturate(0.88) contrast(1.05);
@@ -393,44 +404,41 @@ img.photo {
     grid-row: 2;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    margin-top: 32px;
-    overflow: hidden;
-    border: 1px solid var(--line);
-    border-radius: 22px;
-    background: rgba(18, 58, 47, 0.34);
+    grid-template-rows: auto 1fr;
+    column-gap: clamp(34px, 6vw, 76px);
+    row-gap: 16px;
+    margin-top: 38px;
 }
 
 .profile-details p {
     margin: 0;
-    padding: 20px 24px;
+    padding: 0;
     color: var(--muted);
     font-size: 0.92rem;
     line-height: 1.58;
     text-wrap: pretty;
 }
 
-.profile-details p:first-child,
-.profile-details p:last-child {
-    grid-column: 1 / -1;
-}
-
 .profile-details p:first-child {
-    padding-top: 16px;
-    padding-bottom: 16px;
-    border-bottom: 1px solid var(--line);
+    grid-column: 1;
+    grid-row: 1;
     color: var(--text);
     font-size: 1.05rem;
 }
 
 .profile-details p:nth-child(2) {
-    border-right: 1px solid var(--line);
+    grid-column: 1;
+    grid-row: 2;
+}
+
+.profile-details p:nth-child(3) {
+    grid-column: 2;
+    grid-row: 2;
 }
 
 .profile-details p:last-child {
-    padding-top: 16px;
-    padding-bottom: 16px;
-    border-top: 1px solid var(--line);
-    background: linear-gradient(90deg, rgba(201, 255, 139, 0.11), rgba(88, 234, 209, 0.05));
+    grid-column: 2;
+    grid-row: 1;
     color: var(--text);
 }
 
@@ -581,7 +589,7 @@ footer {
     }
 
     .lang-btns {
-        width: 108px;
+        width: 132px;
         margin-bottom: 32px;
     }
 
@@ -603,11 +611,6 @@ footer {
         letter-spacing: -0.064em;
     }
 
-    h1::before {
-        font-size: 0.58rem;
-        letter-spacing: 0.12em;
-    }
-
     .profile-intro {
         padding-left: 24px;
         font-size: 1.12rem;
@@ -615,11 +618,16 @@ footer {
 
     .profile-details {
         grid-template-columns: 1fr;
+        grid-template-rows: none;
+        gap: 20px;
     }
 
-    .profile-details p:nth-child(2) {
-        border-right: 0;
-        border-bottom: 1px solid var(--line);
+    .profile-details p:first-child,
+    .profile-details p:nth-child(2),
+    .profile-details p:nth-child(3),
+    .profile-details p:last-child {
+        grid-column: 1;
+        grid-row: auto;
     }
 
     .projects-heading {
