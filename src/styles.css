@@ -81,9 +81,12 @@ footer { margin-top: 2rem; font-size: .9rem; color: #666; }
 
 .content {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
+    grid-template-columns: 220px minmax(0, 720px);
+    column-gap: 3rem;
+    row-gap: 2rem;
     align-items: start;
+    justify-content: center;
+    padding-top: 80px;
 }
 
 img.photo {
@@ -93,7 +96,8 @@ img.photo {
     object-fit: cover;
     box-shadow: var(--shadow);
     justify-self: center;
-    transform: translateY(80px);
+    grid-column: 1;
+    grid-row: 1;
 }
 
 img.cert {
@@ -104,7 +108,46 @@ img.cert {
     margin: 2rem 0 1rem;
 }
 
-.section-text { max-width: 720px; text-align: left; margin: 0 auto; }
+.section-text,
+[data-section]:not([hidden]) {
+    display: contents;
+}
+
+[data-section][hidden] {
+    display: none;
+}
+
+.profile-intro {
+    grid-column: 2;
+    grid-row: 1;
+    align-self: center;
+    width: 100%;
+    max-width: 720px;
+    text-align: left;
+}
+
+.projects-heading {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    width: 100%;
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.projects-list {
+    grid-column: 1 / -1;
+    grid-row: 3;
+    width: min(900px, 100%);
+    justify-self: center;
+}
+
+[data-section]:not([hidden]) > p:not(.profile-intro):not(.projects-heading),
+.section-text > :not([data-section]) {
+    grid-column: 1 / -1;
+    width: min(720px, 100%);
+    justify-self: center;
+    text-align: left;
+}
 
 a { color: var(--accent); text-decoration: none; font-weight: 600; }
 a:hover { text-decoration: underline; }
@@ -112,4 +155,19 @@ a:hover { text-decoration: underline; }
 @media (max-width: 640px) {
     body { padding: 1.25rem; }
     .lang-btns { width: 100%; justify-content: center; flex-wrap: wrap; }
+    .content {
+        grid-template-columns: 1fr;
+        padding-top: 50px;
+    }
+    img.photo {
+        grid-column: 1;
+        grid-row: 1;
+    }
+    .profile-intro {
+        grid-column: 1;
+        grid-row: 2;
+        text-align: center;
+    }
+    .projects-heading { grid-row: 3; }
+    .projects-list { grid-row: 4; }
 }
