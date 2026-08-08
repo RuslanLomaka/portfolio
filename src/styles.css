@@ -1,5 +1,9 @@
 :root {
     color-scheme: dark;
+    --parallax-slow: 0px;
+    --parallax-mid: 0px;
+    --parallax-fast: 0px;
+    --parallax-spin: 0deg;
     --bg: #16463a;
     --bg-deep: #0a2b23;
     --surface: rgba(43, 91, 76, 0.78);
@@ -46,6 +50,68 @@ body::before {
     background: linear-gradient(120deg, transparent 15%, rgba(88, 234, 209, 0.025) 50%, transparent 75%);
     content: "";
     pointer-events: none;
+}
+
+.parallax-scene {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.parallax-sun {
+    position: absolute;
+    top: 10vh;
+    right: 7vw;
+    width: clamp(150px, 18vw, 300px);
+    aspect-ratio: 1;
+    border: 1px solid rgba(255, 214, 145, 0.3);
+    border-radius: 50%;
+    background:
+        radial-gradient(circle at 38% 36%, rgba(255, 238, 185, 0.5), transparent 9%),
+        radial-gradient(circle, rgba(255, 196, 119, 0.2), rgba(201, 255, 139, 0.08) 52%, transparent 72%);
+    box-shadow: 0 0 100px rgba(255, 196, 119, 0.09);
+    opacity: 0.72;
+    transform: translate3d(0, var(--parallax-slow), 0);
+    will-change: transform;
+}
+
+.parallax-orbit {
+    position: absolute;
+    top: 5vh;
+    right: -9vw;
+    width: clamp(340px, 48vw, 760px);
+    aspect-ratio: 1.7;
+    border: 1px solid rgba(88, 234, 209, 0.16);
+    border-radius: 50%;
+    opacity: 0.7;
+    transform: translate3d(0, var(--parallax-mid), 0) rotate(calc(-12deg + var(--parallax-spin)));
+    will-change: transform;
+}
+
+.parallax-ridge {
+    position: absolute;
+    right: -8vw;
+    bottom: -10vh;
+    left: -8vw;
+    height: 36vh;
+    transform-origin: center bottom;
+    will-change: transform;
+}
+
+.ridge-back {
+    background: linear-gradient(155deg, rgba(88, 234, 209, 0.12), rgba(52, 112, 92, 0.32));
+    clip-path: polygon(0 62%, 12% 50%, 24% 65%, 38% 31%, 51% 58%, 68% 24%, 82% 51%, 100% 34%, 100% 100%, 0 100%);
+    transform: translate3d(var(--parallax-mid), var(--parallax-slow), 0);
+}
+
+.ridge-front {
+    bottom: -15vh;
+    height: 39vh;
+    background: linear-gradient(180deg, rgba(17, 62, 51, 0.52), rgba(9, 39, 32, 0.9));
+    clip-path: polygon(0 50%, 14% 64%, 31% 42%, 48% 68%, 64% 45%, 79% 61%, 100% 39%, 100% 100%, 0 100%);
+    transform: translate3d(var(--parallax-fast), var(--parallax-mid), 0);
 }
 
 .ambient {
@@ -204,7 +270,7 @@ h1 span:last-child {
     grid-column: 1;
     grid-row: 1;
     width: min(230px, 100%);
-    aspect-ratio: 4 / 5;
+    aspect-ratio: 0.88;
     place-self: center;
     isolation: isolate;
 }
@@ -250,10 +316,11 @@ img.photo {
     width: 100%;
     height: 100%;
     border: 0;
-    border-radius: 20px;
-    box-shadow: var(--shadow);
-    object-fit: cover;
-    filter: saturate(0.88) contrast(1.05);
+    border-radius: 0;
+    box-shadow: none;
+    object-fit: contain;
+    object-position: center bottom;
+    filter: saturate(0.9) contrast(1.04) drop-shadow(0 28px 34px rgba(0, 0, 0, 0.28));
 }
 
 .profile-intro {
@@ -721,5 +788,11 @@ footer {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
+    }
+
+    .parallax-sun,
+    .parallax-orbit,
+    .parallax-ridge {
+        transform: none !important;
     }
 }

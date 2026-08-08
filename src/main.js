@@ -47,3 +47,24 @@ const browserLang = (navigator.language || 'en').toLowerCase();
 if (browserLang.startsWith('uk')) switchLang('ua');
 else if (browserLang.startsWith('de')) switchLang('de');
 else switchLang('en');
+
+let parallaxFrame = 0;
+
+function updateParallax() {
+    const scrollY = window.scrollY;
+    const rootStyle = document.documentElement.style;
+
+    rootStyle.setProperty('--parallax-slow', `${scrollY * 0.055}px`);
+    rootStyle.setProperty('--parallax-mid', `${scrollY * -0.032}px`);
+    rootStyle.setProperty('--parallax-fast', `${scrollY * -0.075}px`);
+    rootStyle.setProperty('--parallax-spin', `${scrollY * 0.018}deg`);
+    parallaxFrame = 0;
+}
+
+window.addEventListener('scroll', () => {
+    if (!parallaxFrame) {
+        parallaxFrame = window.requestAnimationFrame(updateParallax);
+    }
+}, { passive: true });
+
+updateParallax();
