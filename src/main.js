@@ -52,12 +52,13 @@ let parallaxFrame = 0;
 
 function updateParallax() {
     const scrollY = window.scrollY;
+    const depth = Math.tanh(scrollY / (window.innerHeight * 1.8)) * window.innerHeight;
     const rootStyle = document.documentElement.style;
 
-    rootStyle.setProperty('--parallax-slow', `${scrollY * 0.055}px`);
-    rootStyle.setProperty('--parallax-mid', `${scrollY * -0.032}px`);
-    rootStyle.setProperty('--parallax-fast', `${scrollY * -0.075}px`);
-    rootStyle.setProperty('--parallax-spin', `${scrollY * 0.018}deg`);
+    rootStyle.setProperty('--parallax-slow', `${depth * 0.09}px`);
+    rootStyle.setProperty('--parallax-mid', `${depth * -0.055}px`);
+    rootStyle.setProperty('--parallax-fast', `${depth * -0.11}px`);
+    rootStyle.setProperty('--parallax-spin', `${depth * 0.03}deg`);
     parallaxFrame = 0;
 }
 
