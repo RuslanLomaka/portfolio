@@ -123,18 +123,13 @@ img.cert {
     align-self: center;
     width: 100%;
     max-width: 720px;
-    font-size: 1.75rem;
+    font-size: 1.25rem;
     line-height: 1.38;
     text-align: justify;
     text-justify: inter-word;
     text-wrap: pretty;
     hyphens: auto;
     transform: translateY(80px);
-}
-
-.profile-intro strong {
-    font-size: inherit;
-    line-height: inherit;
 }
 
 .profile-name,
