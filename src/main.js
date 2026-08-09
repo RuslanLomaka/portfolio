@@ -11,7 +11,7 @@ const headlines = {
     },
     ua: {
         role: 'Java Backend розробник',
-        statement: 'створює реальні системи, готові до розгортання.'
+        statement: 'створюю реальні системи, готові до розгортання.'
     },
     de: {
         role: 'Java-Backend-Entwickler',
