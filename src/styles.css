@@ -240,13 +240,14 @@ h1 span:last-child {
     width: max-content;
     max-width: 100%;
     margin-top: 0.08em;
-    padding-bottom: 0.08em;
+    margin-bottom: -0.1em;
+    padding-bottom: 0.18em;
     background: linear-gradient(96deg, var(--lime) 4%, var(--mint) 62%, #a6ffed 100%);
     background-clip: text;
     color: transparent;
     -webkit-background-clip: text;
     letter-spacing: -0.025em;
-    line-height: 1.02;
+    line-height: 1.15;
     word-spacing: 0.08em;
 }
 
@@ -603,6 +604,10 @@ img.cert {
     border-radius: 20px;
     background: var(--surface);
     overflow: hidden;
+}
+
+.certificate-details[hidden] {
+    display: none;
 }
 
 .certificate-details ul {

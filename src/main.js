@@ -1,5 +1,6 @@
 const buttons = document.querySelectorAll('[data-lang]');
 const sections = document.querySelectorAll('[data-section]');
+const certificateDetails = document.querySelectorAll('[data-certificate]');
 const headlineRole = document.querySelector('[data-headline="role"]');
 const headlineStatement = document.querySelector('[data-headline="statement"]');
 const langs = Array.from(buttons).map((btn) => btn.dataset.lang);
@@ -28,6 +29,10 @@ function switchLang(lang) {
 
     sections.forEach((section) => {
         section.hidden = section.dataset.section !== lang;
+    });
+
+    certificateDetails.forEach((details) => {
+        details.hidden = details.dataset.certificate !== lang;
     });
 
     const headline = headlines[lang] || headlines.en;
