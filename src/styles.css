@@ -275,6 +275,12 @@ h1 span:last-child {
     isolation: isolate;
 }
 
+.portrait-shell::before,
+.portrait-shell::after,
+.portrait-orbit {
+    display: none;
+}
+
 .portrait-shell::before {
     position: absolute;
     inset: 12px -14px -10px 14px;
