@@ -18,8 +18,8 @@
     <meta name="twitter:title" content="Ruslan Lomaka · Java Backend Developer">
     <meta name="twitter:description" content="Java backend projects, developer tools and experiments built with Spring Boot, Docker and a practical engineering mindset.">
     <meta name="twitter:image" content="https://work.ruslanlomaka.org/assets/social-card.webp">
-    <link rel="stylesheet" href="styles.css?v=20260905-2">
-    <script src="main.js?v=20260905-2" defer></script>
+    <link rel="stylesheet" href="styles.css?v=20260905-5">
+    <script src="main.js?v=20260905-5" defer></script>
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -61,8 +61,8 @@
             <h1 id="hero-title" data-i18n="heroTitle">Curiosity usually turns into a project.</h1>
             <p class="hero-intro" data-i18n="heroIntro">I’m Ruslan. I write code, learn German and run a Raspberry Pi homelab. Here are some things I’ve made along the way, the questions behind them and what I’m still figuring out.</p>
             <div class="actions hero-actions">
-                <a class="button button-primary" href="#language-tools" data-i18n="trySandbox">Start with the language tools</a>
-                <a class="button" href="#projects" data-i18n="exploreProjects">Explore the other projects</a>
+                <a class="button button-primary" href="#projects" data-i18n="trySandbox">Start with Java Sandbox</a>
+                <a class="button" href="#language-tools" data-i18n="exploreProjects">Explore the language tools</a>
                 <a class="button" href="https://www.linkedin.com/in/ruslan-lomaka" target="_blank" rel="noopener noreferrer" data-i18n="connect">Say hello</a>
             </div>
             <p class="availability" data-i18n="availability">Based in Husum, Germany. Built with curiosity; still a work in progress.</p>
@@ -70,35 +70,6 @@
         <div class="portrait-shell">
             <img src="photo-cutout.png?v=20260809-2" width="521" height="541" alt="Portrait of Ruslan Lomaka" class="photo" loading="eager" decoding="async" data-i18n-alt="portraitAlt">
         </div>
-    </section>
-
-    <section class="experiments-section" id="language-tools" aria-labelledby="experiments-title">
-        <div class="section-heading"><p class="eyebrow" data-i18n="experimentsEyebrow">From my German lessons</p><h2 id="experiments-title" data-i18n="experimentsTitle">Learning German, one experiment at a time</h2></div>
-        <p class="section-intro" data-i18n="experimentsIntro">I needed more practice with articles, adjective endings and pronouns. So I made browser exercises for myself and the people I learn with. Trying them together taught me as much about building useful tools as it did about German.</p>
-        <div class="language-showcase">
-            <a class="tool-preview tool-preview-phone" href="https://ruslanlomaka.github.io/DerDieDasDrill/" target="_blank" rel="noopener noreferrer">
-                <span class="preview-heading"><strong>Slot Deutsch</strong><span aria-hidden="true">↗</span></span>
-                <span class="preview-description" data-i18n="slotCaption">A little article practice, made for your phone.</span>
-                <img src="assets/slot-deutsch-mobile.webp" width="780" height="1688" alt="Slot Deutsch on a phone-sized screen, with a vocabulary card and der, die, das buttons" loading="lazy" decoding="async" data-i18n-alt="slotAlt">
-            </a>
-            <div class="grammar-previews">
-                <a class="tool-preview" href="https://ruslanlomaka.github.io/adjectiveEndings/" target="_blank" rel="noopener noreferrer">
-                    <span class="preview-heading"><strong>Adjektivendungen</strong><span aria-hidden="true">↗</span></span>
-                    <img src="assets/adjective-endings.webp" width="2000" height="1320" alt="Adjektivendungen showing a loaded sentence exercise with four answer options" loading="lazy" decoding="async" data-i18n-alt="adjectiveAlt">
-                </a>
-                <a class="tool-preview" href="https://ruslanlomaka.github.io/pronomen/" target="_blank" rel="noopener noreferrer">
-                    <span class="preview-heading"><strong>Deutsche Pronomen</strong><span aria-hidden="true">↗</span></span>
-                    <img src="assets/deutsche-pronomen.webp" width="2000" height="1320" alt="Deutsche Pronomen showing a sentence and four pronoun choices" loading="lazy" decoding="async" data-i18n-alt="pronomenAlt">
-                </a>
-            </div>
-        </div>
-        <div class="tool-grid">
-            <a href="https://ruslanlomaka.github.io/adjectiveEndings/" target="_blank" rel="noopener noreferrer"><span class="status" data-i18n="smallExperiment">Small experiment</span><strong>Adjective Endings</strong><span data-i18n="tool1">Practice adjective endings in sentence context.</span></a>
-            <a href="https://ruslanlomaka.github.io/tema7_ubung/" target="_blank" rel="noopener noreferrer"><span class="status" data-i18n="smallExperiment">Small experiment</span><strong>German Grammar Practice</strong><span data-i18n="tool2">Repeat word order and key grammar patterns.</span></a>
-            <a href="https://ruslanlomaka.github.io/pronomen/" target="_blank" rel="noopener noreferrer"><span class="status" data-i18n="smallExperiment">Small experiment</span><strong>Deutsche Pronomen</strong><span data-i18n="tool3">Train cases and context-based pronouns.</span></a>
-            <a href="https://ruslanlomaka.github.io/DerDieDasDrill/" target="_blank" rel="noopener noreferrer"><span class="status" data-i18n="smallExperiment">Small experiment</span><strong>Slot Deutsch</strong><span data-i18n="tool4">Build article recall with immediate feedback.</span></a>
-        </div>
-        <p class="stack experiments-stack" data-i18n="experimentsStack">Made for practice, improved through feedback from fellow learners.</p>
     </section>
 
     <section class="projects-section" id="projects" aria-labelledby="projects-title">
@@ -114,6 +85,10 @@
                 <p class="project-lead" data-i18n="sandboxIntro">What actually happens between clicking “Run” and seeing Java code execute on a server? I built this sandbox to find out. It’s an evolving prototype: a browser editor, a Java backend and disposable Docker containers, running on my Raspberry Pi.</p>
                 <div class="feature-grid">
                     <div>
+                        <h4 data-i18n="sharedTitle">Making room for other people</h4>
+                        <p data-i18n="sharedText">Building it alone was one kind of challenge. Making it understandable to someone else was another. I documented the architecture and added a simpler development mode so contributors could get started without recreating my home server.</p>
+                    </div>
+                    <div>
                         <details class="technical-details"><summary data-i18n="whatBuilt">A look under the hood</summary>
                         <ul class="build-list">
                             <li data-i18n="built1">Java and Spring Boot backend</li>
@@ -126,10 +101,6 @@
                         </ul>
                         </details>
                     </div>
-                    <div>
-                        <h4 data-i18n="sharedTitle">Making room for other people</h4>
-                        <p data-i18n="sharedText">Building it alone was one kind of challenge. Making it understandable to someone else was another. I documented the architecture and added a simpler development mode so contributors could get started without recreating my home server.</p>
-                    </div>
                 </div>
                 <div class="actions">
                     <a class="button button-primary" href="https://java.ruslanlomaka.org/sandbox" target="_blank" rel="noopener noreferrer" data-i18n="tryPrototype">Try live prototype</a>
@@ -141,7 +112,39 @@
                 <figcaption data-i18n="sandboxCaption">Development-mode interface built from the project’s current source.</figcaption>
             </figure>
         </article>
+    </section>
 
+    <section class="experiments-section" id="language-tools" aria-labelledby="experiments-title">
+        <div class="section-heading"><p class="eyebrow" data-i18n="experimentsEyebrow">From my German lessons</p><h2 id="experiments-title" data-i18n="experimentsTitle">Learning German, one experiment at a time</h2></div>
+        <p class="section-intro" data-i18n="experimentsIntro">I needed more practice with articles, adjective endings and pronouns. So I made browser exercises for myself and the people I learn with. Trying them together taught me as much about building useful tools as it did about German.</p>
+        <div class="language-showcase">
+            <a class="tool-preview tool-preview-phone" href="https://ruslanlomaka.github.io/DerDieDasDrill/" target="_blank" rel="noopener noreferrer">
+                <span class="preview-heading"><strong>Slot Deutsch</strong><span aria-hidden="true">↗</span></span>
+                <span class="preview-description" data-i18n="slotCaption">A little article practice, made for your phone.</span>
+                <img src="assets/slot-deutsch-mobile.webp?v=20260905-4" width="780" height="1688" alt="Slot Deutsch in English with B2 selected, a 4:0 score, Gemütszustand translated as state of mind, and the previous word Mann" loading="lazy" decoding="async" data-i18n-alt="slotAlt">
+            </a>
+            <div class="grammar-previews">
+                <a class="tool-preview" href="https://ruslanlomaka.github.io/adjectiveEndings/" target="_blank" rel="noopener noreferrer">
+                    <span class="preview-heading"><strong>Adjektivendungen</strong><span aria-hidden="true">↗</span></span>
+                    <img src="assets/adjective-endings.webp?v=20260905-3" width="2400" height="1320" alt="Adjektivendungen showing a loaded sentence exercise with four answer options" loading="lazy" decoding="async" data-i18n-alt="adjectiveAlt">
+                </a>
+                <a class="tool-preview" href="https://ruslanlomaka.github.io/pronomen/" target="_blank" rel="noopener noreferrer">
+                    <span class="preview-heading"><strong>Deutsche Pronomen</strong><span aria-hidden="true">↗</span></span>
+                    <img src="assets/deutsche-pronomen.webp?v=20260905-3" width="2400" height="1320" alt="Deutsche Pronomen showing a sentence and four pronoun choices" loading="lazy" decoding="async" data-i18n-alt="pronomenAlt">
+                </a>
+            </div>
+        </div>
+        <div class="tool-grid">
+            <a href="https://ruslanlomaka.github.io/adjectiveEndings/" target="_blank" rel="noopener noreferrer"><span class="status" data-i18n="smallExperiment">Small experiment</span><strong>Adjective Endings</strong><span data-i18n="tool1">Practice adjective endings in sentence context.</span></a>
+            <a href="https://ruslanlomaka.github.io/tema7_ubung/" target="_blank" rel="noopener noreferrer"><span class="status" data-i18n="smallExperiment">Small experiment</span><strong>German Grammar Practice</strong><span data-i18n="tool2">Repeat word order and key grammar patterns.</span></a>
+            <a href="https://ruslanlomaka.github.io/pronomen/" target="_blank" rel="noopener noreferrer"><span class="status" data-i18n="smallExperiment">Small experiment</span><strong>Deutsche Pronomen</strong><span data-i18n="tool3">Train cases and context-based pronouns.</span></a>
+            <a href="https://ruslanlomaka.github.io/DerDieDasDrill/" target="_blank" rel="noopener noreferrer"><span class="status" data-i18n="smallExperiment">Small experiment</span><strong>Slot Deutsch</strong><span data-i18n="tool4">Build article recall with immediate feedback.</span></a>
+        </div>
+        <p class="stack experiments-stack" data-i18n="experimentsStack">Made for practice, improved through feedback from fellow learners.</p>
+    </section>
+
+    <section class="team-section" id="team-projects" aria-labelledby="team-title">
+        <div class="section-heading"><p class="eyebrow" data-i18n="teamEyebrow">Team projects</p><h2 id="team-title" data-i18n="teamTitle">Things we built together</h2></div>
         <div class="project-grid">
             <article class="project-card">
                 <div class="project-meta"><span class="status" data-i18n="teamProject">Team project</span><span>Team Lead · Backend</span></div>
@@ -157,23 +160,34 @@
                 <h3>Multi-Currency Telegram Bot</h3>
                 <p data-i18n="botText">Our team built a Telegram bot for checking exchange rates. My part included connecting the bank APIs and caching their responses. I liked this problem: the same question shouldn’t need a fresh request to the bank every time.</p>
                 <div class="cache-flow" aria-label="Cache flow" data-i18n-aria="cacheLabel"><span data-i18n="cache1">Repeated user requests</span><b>→</b><span data-i18n="cache2">cached response</span><b>→</b><span data-i18n="cache3">bank API refreshed only after TTL expiry</span></div>
+                <p class="stack">Java 21 · TelegramBots · REST · Gson · Gradle · JUnit · Mockito</p>
                 <div class="actions"><a class="button" href="https://github.com/AntonTsa/minyala-currency-bot" target="_blank" rel="noopener noreferrer" data-i18n="viewRepository">View repository</a></div>
             </article>
-
-            <article class="project-card project-with-image">
-                <div class="project-content">
-                    <div class="project-meta"><span class="status" data-i18n="personalProject">Personal project</span><span data-i18n="quizOwnership">Designed · Built · Deployed</span></div>
-                    <h3>QuizForger</h3>
-                    <p data-i18n="quizText1">I wanted a way to turn learning material into something people could play with. QuizForger began as my CS50 web project. You can create a quiz yourself or bring questions from an AI tool through a JSON import, then edit and share them.</p>
-                    <p data-i18n="quizText2">Friends and people from my language course tried it and helped me see what needed changing. I built and deployed it myself, and keep it running in my Raspberry Pi homelab.</p>
-                    <div class="actions">
-                        <a class="button button-primary" href="https://quiz.ruslanlomaka.org" target="_blank" rel="noopener noreferrer" data-i18n="tryQuiz">Try QuizForger</a>
-                        <a class="button" href="https://github.com/RuslanLomaka/cs50quiz" target="_blank" rel="noopener noreferrer" data-i18n="viewSource">View source</a>
-                    </div>
-                </div>
-                <img src="assets/quizforger.webp" width="1200" height="750" alt="QuizForger quiz browser interface" loading="lazy" decoding="async" data-i18n-alt="quizAlt">
-            </article>
         </div>
+    </section>
+
+    <section class="quiz-section" id="quizforger" aria-labelledby="quiz-title">
+        <article class="project-card project-with-image">
+            <div class="project-content">
+                <div class="project-meta"><span class="status" data-i18n="personalProject">Personal project</span><span data-i18n="quizOwnership">Designed · Built · Deployed</span></div>
+                <h2 class="project-title" id="quiz-title">QuizForger</h2>
+                <p data-i18n="quizText1">I wanted a way to turn learning material into something people could play with. QuizForger began as my CS50 web project. You can create a quiz yourself or bring questions from an AI tool through a JSON import, then edit and share them.</p>
+                <p data-i18n="quizText2">Friends and people from my language course tried it and helped me see what needed changing. I built and deployed it myself, and keep it running in my Raspberry Pi homelab.</p>
+                <details class="technical-details quiz-technical-details">
+                    <summary data-i18n="whatBuilt">A look under the hood</summary>
+                    <ul class="build-list">
+                        <li data-i18n="quizFrontend">HTML, CSS and JavaScript for the browser interface</li>
+                        <li data-i18n="quizBackend">Python and Django for the application logic</li>
+                        <li data-i18n="quizDatabase">SQLite for storing quizzes and attempts</li>
+                    </ul>
+                </details>
+                <div class="actions">
+                    <a class="button button-primary" href="https://quiz.ruslanlomaka.org" target="_blank" rel="noopener noreferrer" data-i18n="tryQuiz">Try QuizForger</a>
+                    <a class="button" href="https://github.com/RuslanLomaka/cs50quiz" target="_blank" rel="noopener noreferrer" data-i18n="viewSource">View source</a>
+                </div>
+            </div>
+            <img src="assets/quizforger.webp" width="1200" height="750" alt="QuizForger quiz browser interface" loading="lazy" decoding="async" data-i18n-alt="quizAlt">
+        </article>
     </section>
 
     <section class="thinking-section" aria-labelledby="thinking-title">
@@ -194,7 +208,7 @@
     </section>
 
     <section class="learning-card" aria-labelledby="learning-title">
-        <img src="assets/certificate-thumb.webp" width="720" height="491" alt="Preview of the GoIT Java Developer certificate" loading="lazy" decoding="async" data-i18n-alt="certificateAlt">
+        <button class="certificate-preview" type="button" data-certificate-open aria-haspopup="dialog" aria-label="Open the full certificate" data-i18n-aria="openCertificate"><img src="assets/certificate-thumb.webp?v=20260905-5" width="720" height="509" alt="Preview of the GoIT Java Developer certificate" loading="lazy" decoding="async" data-i18n-alt="certificateAlt"><span class="certificate-open-icon" aria-hidden="true">⤢</span></button>
         <div><p class="eyebrow" data-i18n="learningEyebrow">Learning and certification</p><h2 id="learning-title" data-i18n="learningTitle">GoIT Java Developer Program</h2><p data-i18n="learningDate">Completed October 2025</p><button class="button" type="button" data-certificate-open data-i18n="viewCertificate">View certificate</button></div>
     </section>
 
@@ -212,7 +226,38 @@
 
 <dialog class="certificate-dialog" id="certificate-dialog" aria-labelledby="certificate-dialog-title">
     <div class="dialog-header"><h2 id="certificate-dialog-title">GoIT Java Developer Certificate</h2><button type="button" class="dialog-close" data-certificate-close aria-label="Close certificate">×</button></div>
-    <img data-certificate-image data-src="assets/certificate-full.webp" width="1600" height="1092" alt="GoIT Java Developer certificate awarded to Ruslan Lomaka">
+    <div class="certificate-toolbar">
+        <p class="certificate-page-title" data-certificate-caption aria-live="polite">Certificate · 1 / 3</p>
+        <button class="button certificate-zoom-toggle" type="button" data-certificate-zoom aria-pressed="false" data-i18n="zoomIn">Zoom in</button>
+        <a class="certificate-pdf" href="assets/goit-certificate.pdf" target="_blank" rel="noopener noreferrer" data-i18n="originalPdf">Original PDF ↗</a>
+    </div>
+    <div class="certificate-carousel" aria-label="Certificate sections" data-i18n-aria="certificateSections">
+        <div class="certificate-slide">
+            <button class="certificate-image-button" type="button" aria-label="Zoom in" aria-pressed="false" data-certificate-image-button>
+                <img data-certificate-image data-src="assets/certificate-cover.webp" width="3368" height="2380" alt="Java developer certificate awarded to Ruslan Lomaka on 31 October 2025, certificate ID 41206" data-i18n-alt="certificateCoverAlt">
+            </button>
+        </div>
+        <div class="certificate-slide" inert>
+            <button class="certificate-image-button" type="button" aria-label="Zoom in" aria-pressed="false" data-certificate-image-button>
+                <img data-certificate-image data-src="assets/certificate-overview.webp" width="3368" height="2380" alt="Course overview: Java Core, Java Developer, soft skills, career skills, two team projects and 154 total hours" data-i18n-alt="certificateOverviewAlt">
+            </button>
+        </div>
+        <div class="certificate-slide" inert>
+            <button class="certificate-image-button" type="button" aria-label="Zoom in" aria-pressed="false" data-certificate-image-button>
+                <img data-certificate-image data-src="assets/certificate-curriculum.webp" width="3368" height="2380" alt="Course curriculum with 13 Java Core units and 19 Java Developer units, including databases, REST, Hibernate, Spring Boot and CI/CD" data-i18n-alt="certificateCurriculumAlt">
+            </button>
+        </div>
+    </div>
+    <div class="certificate-navigation">
+        <button type="button" class="certificate-arrow" data-certificate-prev aria-label="Previous section" data-i18n-aria="certificatePrevious">‹</button>
+        <div class="certificate-pages" role="group" aria-label="Choose a section" data-i18n-aria="certificateChoose">
+            <button type="button" data-certificate-page="0" aria-pressed="true" aria-label="Certificate" data-i18n-aria="certificateCover">1</button>
+            <button type="button" data-certificate-page="1" aria-pressed="false" aria-label="Course overview" data-i18n-aria="certificateOverview">2</button>
+            <button type="button" data-certificate-page="2" aria-pressed="false" aria-label="Curriculum" data-i18n-aria="certificateCurriculum">3</button>
+        </div>
+        <button type="button" class="certificate-arrow" data-certificate-next aria-label="Next section" data-i18n-aria="certificateNext">›</button>
+    </div>
+    <p class="certificate-hint" data-certificate-hint data-i18n="certificateHint">Swipe or use the arrows. Click or tap the image to zoom.</p>
 </dialog>
 
 <footer>© 2026 Ruslan Lomaka</footer>

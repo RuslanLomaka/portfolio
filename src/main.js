@@ -3,23 +3,44 @@ const translatable = document.querySelectorAll('[data-i18n]');
 const translatedAlt = document.querySelectorAll('[data-i18n-alt]');
 const translatedAria = document.querySelectorAll('[data-i18n-aria]');
 const certificateDialog = document.querySelector('#certificate-dialog');
-const certificateImage = document.querySelector('[data-certificate-image]');
+const certificateImages = [...document.querySelectorAll('[data-certificate-image]')];
 const certificateTitle = document.querySelector('#certificate-dialog-title');
 const certificateClose = document.querySelector('[data-certificate-close]');
+const certificateCarousel = document.querySelector('.certificate-carousel');
+const certificateSlides = [...document.querySelectorAll('.certificate-slide')];
+const certificatePages = [...document.querySelectorAll('[data-certificate-page]')];
+const certificateZoomButton = document.querySelector('[data-certificate-zoom]');
+let certificatePage = 0;
+let certificateZoomed = false;
+let certificateOpening = false;
+let selectedLanguage = 'en';
+let previousBodyOverflow = '';
 
 const english = Object.fromEntries(Array.from(translatable, (element) => [element.dataset.i18n, element.textContent.trim()]));
 const englishAlt = Object.fromEntries(Array.from(translatedAlt, (element) => [element.dataset.i18nAlt, element.alt]));
 const englishAria = Object.fromEntries(Array.from(translatedAria, (element) => [element.dataset.i18nAria, element.getAttribute('aria-label')]));
+english.zoomOut = 'Zoom out';
+english.certificateZoomHint = 'Scroll or drag to explore. Click or tap the image to zoom out.';
 
 const translations = {
     ua: {
+        zoomIn: "Збільшити",
+        zoomOut: "Зменшити",
+        originalPdf: "Оригінал PDF ↗",
+        certificateHint: "Гортайте або натискайте стрілки. Натисніть зображення, щоб збільшити.",
+        certificateZoomHint: "Прокручуйте або перетягуйте. Натисніть зображення, щоб зменшити.",
+        teamEyebrow: "Командні проєкти",
+        teamTitle: "Те, що ми створили разом",
+        quizFrontend: "HTML, CSS і JavaScript для інтерфейсу в браузері",
+        quizBackend: "Python і Django для логіки застосунку",
+        quizDatabase: "SQLite для збереження квізів і спроб проходження",
         slotCaption: "Трохи практики артиклів — просто з телефона.",
         skipContent: "Перейти до вмісту",
         heroEyebrow: "Руслан Ломака · Мій куточок інтернету",
         heroTitle: "Моя цікавість часто закінчується новим проєктом.",
         heroIntro: "Я Руслан. Пишу код, вчу німецьку й тримаю домашній сервер на Raspberry Pi. Тут зібрані речі, які я створюю, запитання, з яких усе почалося, і те, у чому ще розбираюся.",
-        trySandbox: "Почати з мовних інструментів",
-        exploreProjects: "Інші мої проєкти",
+        trySandbox: "Почати з Java Sandbox",
+        exploreProjects: "Переглянути мовні інструменти",
         connect: "Написати мені",
         availability: "Живу в Хузумі, Німеччина. Створюю з цікавості й продовжую вдосконалювати.",
         projectsEyebrow: "Коли хочеться копнути глибше",
@@ -86,13 +107,23 @@ const translations = {
         updated: 'Оновлено: вересень 2026.'
     },
     de: {
+        zoomIn: "Vergrößern",
+        zoomOut: "Verkleinern",
+        originalPdf: "Original-PDF ↗",
+        certificateHint: "Wischen oder Pfeile nutzen. Zum Vergrößern auf das Bild tippen oder klicken.",
+        certificateZoomHint: "Scrollen oder ziehen. Zum Verkleinern auf das Bild tippen oder klicken.",
+        teamEyebrow: "Teamprojekte",
+        teamTitle: "Was wir gemeinsam gebaut haben",
+        quizFrontend: "HTML, CSS und JavaScript für die Browseroberfläche",
+        quizBackend: "Python und Django für die Anwendungslogik",
+        quizDatabase: "SQLite zum Speichern von Quizzen und Versuchen",
         slotCaption: "Ein bisschen Artikeltraining, direkt auf dem Handy.",
         skipContent: "Zum Inhalt",
         heroEyebrow: "Ruslan Lomaka · Mein Platz im Web",
         heroTitle: "Aus Neugier wird meistens ein Projekt.",
         heroIntro: "Ich bin Ruslan. Ich schreibe Code, lerne Deutsch und betreibe ein Raspberry-Pi-Homelab. Hier teile ich, was dabei entsteht, welche Fragen dahinterstecken und woran ich noch tüftle.",
-        trySandbox: "Zu den Lernwerkzeugen",
-        exploreProjects: "Weitere Projekte entdecken",
+        trySandbox: "Mit Java Sandbox anfangen",
+        exploreProjects: "Lernwerkzeuge entdecken",
         connect: "Hallo sagen",
         availability: "Zu Hause in Husum. Aus Neugier gebaut und immer noch in Arbeit.",
         projectsEyebrow: "Ein bisschen tiefer graben",
@@ -161,13 +192,13 @@ const translations = {
 };
 
 const altTranslations = {
-    ua: { slotAlt: "Slot Deutsch на екрані розміру смартфона: картка слова й кнопки der, die, das", adjectiveAlt: "Adjektivendungen із завантаженим реченням і чотирма варіантами відповіді", pronomenAlt: "Deutsche Pronomen із реченням і чотирма варіантами займенників", portraitAlt: 'Портрет Руслана Ломаки', sandboxAlt: 'Інтерфейс Online Java Sandbox у режимі розробки', quizAlt: 'Інтерфейс QuizForger зі списком квізів', experimentsAlt: 'Об’єднаний вигляд трьох інструментів для вивчення німецької', certificateAlt: 'Попередній перегляд сертифіката GoIT Java Developer' },
-    de: { slotAlt: "Slot Deutsch im Smartphoneformat mit Wortkarte und Schaltflächen für der, die und das", adjectiveAlt: "Adjektivendungen mit geladener Satzübung und vier Antwortmöglichkeiten", pronomenAlt: "Deutsche Pronomen mit einem Satz und vier Antwortmöglichkeiten", portraitAlt: 'Porträt von Ruslan Lomaka', sandboxAlt: 'Entwicklungsoberfläche der Online Java Sandbox', quizAlt: 'QuizForger-Oberfläche mit Quizliste', experimentsAlt: 'Kombinierte Ansicht von drei Deutschlern-Werkzeugen', certificateAlt: 'Vorschau des GoIT-Java-Developer-Zertifikats' }
+    ua: { certificateCoverAlt: "Сертифікат Java Developer, виданий Руслану Ломаці 31 жовтня 2025 року, номер 41206", certificateOverviewAlt: "Огляд курсу: Java Core, Java Developer, soft skills, кар’єрні навички, два командні проєкти та 154 години навчання", certificateCurriculumAlt: "Навчальна програма: 13 модулів Java Core та 19 модулів Java Developer, зокрема бази даних, REST, Hibernate, Spring Boot і CI/CD", slotAlt: "Slot Deutsch англійською з вибраним B2: рахунок 4:0, слово Gemütszustand з перекладом state of mind і попереднє слово Mann", adjectiveAlt: "Adjektivendungen із завантаженим реченням і чотирма варіантами відповіді", pronomenAlt: "Deutsche Pronomen із реченням і чотирма варіантами займенників", portraitAlt: 'Портрет Руслана Ломаки', sandboxAlt: 'Інтерфейс Online Java Sandbox у режимі розробки', quizAlt: 'Інтерфейс QuizForger зі списком квізів', experimentsAlt: 'Об’єднаний вигляд трьох інструментів для вивчення німецької', certificateAlt: 'Попередній перегляд сертифіката GoIT Java Developer' },
+    de: { certificateCoverAlt: "Java-Developer-Zertifikat für Ruslan Lomaka vom 31. Oktober 2025, Zertifikatsnummer 41206", certificateOverviewAlt: "Kursübersicht: Java Core, Java Developer, Soft Skills, Karrierekompetenzen, zwei Teamprojekte und insgesamt 154 Stunden", certificateCurriculumAlt: "Lehrplan mit 13 Java-Core-Modulen und 19 Java-Developer-Modulen, darunter Datenbanken, REST, Hibernate, Spring Boot und CI/CD", slotAlt: "Slot Deutsch auf Englisch mit ausgewähltem B2: Punktestand 4:0, Gemütszustand mit der Übersetzung state of mind und dem vorherigen Wort Mann", adjectiveAlt: "Adjektivendungen mit geladener Satzübung und vier Antwortmöglichkeiten", pronomenAlt: "Deutsche Pronomen mit einem Satz und vier Antwortmöglichkeiten", portraitAlt: 'Porträt von Ruslan Lomaka', sandboxAlt: 'Entwicklungsoberfläche der Online Java Sandbox', quizAlt: 'QuizForger-Oberfläche mit Quizliste', experimentsAlt: 'Kombinierte Ansicht von drei Deutschlern-Werkzeugen', certificateAlt: 'Vorschau des GoIT-Java-Developer-Zertifikats' }
 };
 
 const ariaTranslations = {
-    ua: { cacheLabel: 'Схема кешування' },
-    de: { cacheLabel: 'Cache-Ablauf' }
+    ua: { openCertificate: "Відкрити повний сертифікат", certificateSections: "Розділи сертифіката", certificatePrevious: "Попередній розділ", certificateNext: "Наступний розділ", certificateChoose: "Обрати розділ", certificateCover: "Сертифікат", certificateOverview: "Огляд курсу", certificateCurriculum: "Навчальна програма", cacheLabel: 'Схема кешування' },
+    de: { openCertificate: "Vollständiges Zertifikat öffnen", certificateSections: "Zertifikatsabschnitte", certificatePrevious: "Vorheriger Abschnitt", certificateNext: "Nächster Abschnitt", certificateChoose: "Abschnitt auswählen", certificateCover: "Zertifikat", certificateOverview: "Kursübersicht", certificateCurriculum: "Lehrplan", cacheLabel: 'Cache-Ablauf' }
 };
 
 const locale = {
@@ -178,6 +209,7 @@ const locale = {
 
 function switchLanguage(language) {
     const selected = locale[language] ? language : 'en';
+    selectedLanguage = selected;
     const copy = selected === 'en' ? english : translations[selected];
     const altCopy = selected === 'en' ? englishAlt : altTranslations[selected];
     const ariaCopy = selected === 'en' ? englishAria : ariaTranslations[selected];
@@ -202,6 +234,7 @@ function switchLanguage(language) {
     document.documentElement.lang = locale[selected].lang;
     certificateTitle.textContent = locale[selected].certificate;
     certificateClose.setAttribute('aria-label', locale[selected].close);
+    updateCertificateViewer();
 }
 
 buttons.forEach((button) => button.addEventListener('click', () => {
@@ -209,16 +242,129 @@ buttons.forEach((button) => button.addEventListener('click', () => {
     try { localStorage.setItem('portfolio-language', button.dataset.lang); } catch { /* Storage can be unavailable in private browsing. */ }
 }));
 
+function updateCertificateViewer() {
+    const copy = selectedLanguage === 'en' ? english : translations[selectedLanguage];
+    const zoomLabel = certificateZoomed ? copy.zoomOut : copy.zoomIn;
+    certificateZoomButton.textContent = zoomLabel;
+    certificateZoomButton.setAttribute('aria-pressed', String(certificateZoomed));
+    document.querySelector('[data-certificate-caption]').textContent = `${certificatePages[certificatePage].getAttribute('aria-label')} · ${certificatePage + 1} / ${certificatePages.length}`;
+    document.querySelector('[data-certificate-hint]').textContent = certificateZoomed ? copy.certificateZoomHint : copy.certificateHint;
+    certificatePages.forEach((button, index) => button.setAttribute('aria-pressed', String(index === certificatePage)));
+    certificateSlides.forEach((slide, index) => {
+        slide.inert = index !== certificatePage;
+        const button = slide.querySelector('button');
+        button.setAttribute('aria-label', zoomLabel);
+        button.setAttribute('aria-pressed', String(index === certificatePage && certificateZoomed));
+    });
+    document.querySelector('[data-certificate-prev]').disabled = certificatePage === 0;
+    document.querySelector('[data-certificate-next]').disabled = certificatePage === certificatePages.length - 1;
+}
+
+function setCertificateZoom(zoomed) {
+    certificateZoomed = zoomed;
+    certificateCarousel.classList.toggle('is-zoomed', zoomed);
+    certificateSlides.forEach((slide, index) => {
+        slide.classList.toggle('is-zoomed', zoomed && index === certificatePage);
+        slide.scrollLeft = zoomed && index === certificatePage ? (slide.scrollWidth - slide.clientWidth) / 2 : 0;
+        slide.scrollTop = zoomed && index === certificatePage ? (slide.scrollHeight - slide.clientHeight) / 2 : 0;
+    });
+    updateCertificateViewer();
+}
+
+function showCertificatePage(index, smooth = true) {
+    certificatePage = Math.max(0, Math.min(certificatePages.length - 1, index));
+    setCertificateZoom(false);
+    certificateCarousel.scrollTo({ left: certificatePage * certificateCarousel.clientWidth, behavior: smooth && !window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'smooth' : 'instant' });
+}
+
 document.querySelectorAll('[data-certificate-open]').forEach((button) => {
-    button.addEventListener('click', () => {
-        if (!certificateImage.src) certificateImage.src = certificateImage.dataset.src;
+    button.setAttribute('aria-haspopup', 'dialog');
+    button.addEventListener('click', async () => {
+        if (certificateOpening || certificateDialog.open) return;
+        certificateOpening = true;
+        certificateImages.forEach(image => { if (!image.getAttribute('src')) image.src = image.dataset.src; });
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (!reduceMotion) {
+            const preview = document.querySelector('.certificate-preview');
+            await preview.animate([{ transform: 'perspective(800px) rotateY(0deg)' }, { transform: 'perspective(800px) rotateY(90deg)' }], { duration: 180, easing: 'ease-in' }).finished;
+        }
+        previousBodyOverflow = document.body.style.overflow;
+        document.body.style.overflow = 'hidden';
         certificateDialog.showModal();
+        showCertificatePage(0, false);
+        certificateClose.focus();
+        if (!reduceMotion) certificateCarousel.animate([{ transform: 'perspective(1400px) rotateY(-75deg)', opacity: 0.3 }, { transform: 'perspective(1400px) rotateY(0deg)', opacity: 1 }], { duration: 300, easing: 'ease-out' });
+        certificateOpening = false;
     });
 });
 
+certificateZoomButton.addEventListener('click', () => setCertificateZoom(!certificateZoomed));
+certificatePages.forEach((button, index) => button.addEventListener('click', () => showCertificatePage(index)));
+document.querySelector('[data-certificate-prev]').addEventListener('click', () => showCertificatePage(certificatePage - 1));
+document.querySelector('[data-certificate-next]').addEventListener('click', () => showCertificatePage(certificatePage + 1));
+
+// Native scroll-snap handles touch swipes; pointer dragging also works with a mouse.
+let certificatePointer = null;
+let ignoreCertificateClickUntil = 0;
+certificateCarousel.addEventListener('pointerdown', event => {
+    if (event.pointerType !== 'mouse' || event.button !== 0) return;
+    const slide = certificateSlides[certificatePage];
+    certificatePointer = { x: event.clientX, y: event.clientY, left: slide.scrollLeft, top: slide.scrollTop, target: event.target, moved: false };
+    event.target.setPointerCapture(event.pointerId);
+});
+certificateCarousel.addEventListener('pointermove', event => {
+    if (!certificatePointer) return;
+    const dx = event.clientX - certificatePointer.x;
+    const dy = event.clientY - certificatePointer.y;
+    if (Math.hypot(dx, dy) > 8) certificatePointer.moved = true;
+    if (certificateZoomed && certificatePointer.moved) {
+        certificateSlides[certificatePage].scrollLeft = certificatePointer.left - dx;
+        certificateSlides[certificatePage].scrollTop = certificatePointer.top - dy;
+    }
+});
+certificateCarousel.addEventListener('pointerup', event => {
+    if (!certificatePointer) return;
+    if (certificatePointer.moved) {
+        ignoreCertificateClickUntil = performance.now() + 400;
+        const dx = event.clientX - certificatePointer.x;
+        if (!certificateZoomed && Math.abs(dx) > 45) showCertificatePage(certificatePage + (dx < 0 ? 1 : -1));
+    }
+    certificatePointer = null;
+});
+certificateCarousel.addEventListener('pointercancel', () => { certificatePointer = null; });
+document.querySelectorAll('[data-certificate-image-button]').forEach(button => button.addEventListener('click', () => {
+    if (performance.now() >= ignoreCertificateClickUntil) setCertificateZoom(!certificateZoomed);
+}));
+
+let certificateScrollTimer;
+certificateCarousel.addEventListener('scroll', () => {
+    if (certificateZoomed) return;
+    clearTimeout(certificateScrollTimer);
+    certificateScrollTimer = setTimeout(() => {
+        if (!certificateCarousel.clientWidth || certificateZoomed) return;
+        certificatePage = Math.max(0, Math.min(certificatePages.length - 1, Math.round(certificateCarousel.scrollLeft / certificateCarousel.clientWidth)));
+        updateCertificateViewer();
+    }, 100);
+}, { passive: true });
+new ResizeObserver(() => {
+    if (certificateDialog.open) certificateCarousel.scrollTo({ left: certificatePage * certificateCarousel.clientWidth, behavior: 'instant' });
+}).observe(certificateCarousel);
+
+certificateDialog.addEventListener('keydown', event => {
+    if (certificateZoomed) return;
+    if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') {
+        event.preventDefault();
+        showCertificatePage(certificatePage + (event.key === 'ArrowRight' ? 1 : -1));
+    }
+});
 certificateClose.addEventListener('click', () => certificateDialog.close());
-certificateDialog.addEventListener('click', (event) => {
-    if (event.target === certificateDialog) certificateDialog.close();
+certificateDialog.addEventListener('close', () => {
+    document.body.style.overflow = previousBodyOverflow;
+    setCertificateZoom(false);
+});
+certificateDialog.addEventListener('click', event => {
+    const bounds = certificateDialog.getBoundingClientRect();
+    if (event.target === certificateDialog && (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom)) certificateDialog.close();
 });
 
 const browserLanguage = (navigator.language || 'en').toLowerCase();
